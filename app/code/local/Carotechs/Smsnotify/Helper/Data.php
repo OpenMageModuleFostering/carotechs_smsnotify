@@ -39,6 +39,11 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 		return Mage::getStoreConfig(self::CONFIG_PATH.'general/message_field');
 	}
 	
+	public function getToField()
+	{
+		return Mage::getStoreConfig(self::CONFIG_PATH.'general/to_field');
+	}
+	
 	public function getSentMethod()
 	{
 		return Mage::getStoreConfig(self::CONFIG_PATH.'general/urlmethod');
@@ -72,8 +77,8 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 	public function getMessage(Mage_Sales_Model_Order $order)
 	{
 		$billingAddress = $order->getBillingAddress();
-		$whatArray = array('{{firstname}}');
-		$withWhatArray = array($billingAddress->getFirstname());
+		$whatArray = array('{{firstname}}','{{order_id}}');
+		$withWhatArray = array($billingAddress->getFirstname(),$order->getIncrementId());
 		
 		return str_replace($whatArray,$withWhatArray,Mage::getStoreConfig(self::CONFIG_PATH.'orders/message'));
 	}
@@ -211,8 +216,8 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 	
 	public function file_get_contents_curl($url)
 	{
-		//echo $url;
-	//	die();
+	//	echo $url;
+	//die();
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -228,8 +233,8 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 	public function file_get_contents_curl_POST($url,$data)
 	{
 			//echo $url;
-			//echo $data;
-		   //die();
+			//print_r($data);
+		 //  die();
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);

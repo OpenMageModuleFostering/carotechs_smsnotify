@@ -3,30 +3,37 @@ class Carotechs_Smsnotify_Model_Observer
 {
 	public function sendSmsOnOrderCreated(Varien_Event_Observer $observer)
 	{
-			
 		if($this->getHelper()->isOrdersEnabled())
 		{
 			$orders = $observer->getEvent()->getOrderIds();
 			$order = Mage::getModel('sales/order')->load($orders['0']);
+			
 			if ($order instanceof Mage_Sales_Model_Order)
 			{
 				$api_url = $this->getHelper()->getAPI();
 				$message_field_name = $this->getHelper()->getMessageField();
+				$to_field_name = $this->getHelper()->getToField();
+				
 				if($message_field_name=='')
 				{
-					$message_field_name = 'message';
+					$message_field_name = 'msg';
 				}
+				if($to_field_name=='')
+				{
+					$to_field_name = 'to';
+				}
+				
 				$sent_method = $this->getHelper()->getSentMethod();
 				
-				$smsto = $this->getHelper()->getTelephoneFromOrder($order);
-				$smsmsg = $this->getHelper()->getMessage($order);
+				$smsto = urlencode($this->getHelper()->getTelephoneFromOrder($order));
+				$smsmsg = urlencode($this->getHelper()->getMessage($order));
 							
-				
-				$data .= '&'.$message_field_name.'=' . urlencode($smsmsg);
-				$api_url = str_replace('{{mobile_no}}',$smsto,$api_url);
-				
 				if($sent_method)
 				{
+					$data = '';
+					$data .= '?'.$message_field_name.'=' . $smsmsg;
+					$data .= '&'.$to_field_name.'=' . $smsto;
+				
 					$method = 'GET';
 					$url = $api_url.$data;
 					$sendSms = $this->getHelper()->sendSms($url);
@@ -34,8 +41,10 @@ class Carotechs_Smsnotify_Model_Observer
 				else
 				{
 					$method = 'POST';
+					$post_data[$message_field_name] = $smsmsg;
+					$post_data[$to_field_name] =  $smsto;
 					$url = $api_url;
-					$sendSms = $this->getHelper()->sendSms($url,$data);
+					$sendSms = $this->getHelper()->sendSms($url,$post_data);
 				}
 				
 			}
@@ -45,27 +54,35 @@ class Carotechs_Smsnotify_Model_Observer
 	public function sendSmsOnOrderHold(Varien_Event_Observer $observer)
 	{
 		if($this->getHelper()->isOrderHoldEnabled()) {
-			$order = $observer->getOrder();
-			if ($order instanceof Mage_Sales_Model_Order) {
-				if ($order->getState() !== $order->getOrigData('state') && $order->getState() === Mage_Sales_Model_Order::STATE_HOLDED)
-				{
+			$orders = $observer->getEvent()->getOrderIds();
+			$order = Mage::getModel('sales/order')->load($orders['0']);
+			
+			if ($order instanceof Mage_Sales_Model_Order)
+			{
 				$api_url = $this->getHelper()->getAPI();
 				$message_field_name = $this->getHelper()->getMessageField();
+				$to_field_name = $this->getHelper()->getToField();
+				
 				if($message_field_name=='')
 				{
-					$message_field_name = 'message';
+					$message_field_name = 'msg';
 				}
+				if($to_field_name=='')
+				{
+					$to_field_name = 'to';
+				}
+				
 				$sent_method = $this->getHelper()->getSentMethod();
 				
-				$smsto = $this->getHelper()->getTelephoneFromOrder($order);
-				$smsmsg = $this->getHelper()->getMessageForOrderHold($order);
+				$smsto = urlencode($this->getHelper()->getTelephoneFromOrder($order));
+				$smsmsg = urlencode($this->getHelper()->getSenderForOrderHold($order));
 							
-				
-				$data .= '&'.$message_field_name.'=' . urlencode($smsmsg);
-				$api_url = str_replace('{{mobile_no}}',$smsto,$api_url);
-				
 				if($sent_method)
 				{
+					$data = '';
+					$data .= '?'.$message_field_name.'=' . $smsmsg;
+					$data .= '&'.$to_field_name.'=' . $smsto;
+				
 					$method = 'GET';
 					$url = $api_url.$data;
 					$sendSms = $this->getHelper()->sendSms($url);
@@ -73,12 +90,12 @@ class Carotechs_Smsnotify_Model_Observer
 				else
 				{
 					$method = 'POST';
+					$post_data[$message_field_name] = $smsmsg;
+					$post_data[$to_field_name] =  $smsto;
 					$url = $api_url;
-					$sendSms = $this->getHelper()->sendSms($url,$data);
+					$sendSms = $this->getHelper()->sendSms($url,$post_data);
 				}
 				
-
-				}
 			}
 		}
 	}
@@ -86,27 +103,35 @@ class Carotechs_Smsnotify_Model_Observer
 	public function sendSmsOnOrderUnhold(Varien_Event_Observer $observer)
 	{
 		if($this->getHelper()->isOrderUnholdEnabled()) {
-			$order = $observer->getOrder();
-			if ($order instanceof Mage_Sales_Model_Order) {
-				if ($order->getState() !== $order->getOrigData('state') && $order->getOrigData('state') === Mage_Sales_Model_Order::STATE_HOLDED)
-				{
+			$orders = $observer->getEvent()->getOrderIds();
+			$order = Mage::getModel('sales/order')->load($orders['0']);
+			
+			if ($order instanceof Mage_Sales_Model_Order)
+			{
 				$api_url = $this->getHelper()->getAPI();
 				$message_field_name = $this->getHelper()->getMessageField();
+				$to_field_name = $this->getHelper()->getToField();
+				
 				if($message_field_name=='')
 				{
-					$message_field_name = 'message';
+					$message_field_name = 'msg';
 				}
+				if($to_field_name=='')
+				{
+					$to_field_name = 'to';
+				}
+				
 				$sent_method = $this->getHelper()->getSentMethod();
 				
-				$smsto = $this->getHelper()->getTelephoneFromOrder($order);
-				$smsmsg = $this->getHelper()->getMessageForOrderUnhold($order);
+				$smsto = urlencode($this->getHelper()->getTelephoneFromOrder($order));
+				$smsmsg = urlencode($this->getHelper()->getSenderForOrderUnHold($order));
 							
-				
-				$data .= '&'.$message_field_name.'=' . urlencode($smsmsg);
-				$api_url = str_replace('{{mobile_no}}',$smsto,$api_url);
-				
 				if($sent_method)
 				{
+					$data = '';
+					$data .= '?'.$message_field_name.'=' . $smsmsg;
+					$data .= '&'.$to_field_name.'=' . $smsto;
+				
 					$method = 'GET';
 					$url = $api_url.$data;
 					$sendSms = $this->getHelper()->sendSms($url);
@@ -114,11 +139,12 @@ class Carotechs_Smsnotify_Model_Observer
 				else
 				{
 					$method = 'POST';
+					$post_data[$message_field_name] = $smsmsg;
+					$post_data[$to_field_name] =  $smsto;
 					$url = $api_url;
-					$sendSms = $this->getHelper()->sendSms($url,$data);
+					$sendSms = $this->getHelper()->sendSms($url,$post_data);
 				}
 				
-				}
 			}
 		}
 	}
@@ -126,27 +152,35 @@ class Carotechs_Smsnotify_Model_Observer
 	public function sendSmsOnOrderCanceled(Varien_Event_Observer $observer)
 	{
 		if($this->getHelper()->isOrderCanceledEnabled()) {
-			$order = $observer->getOrder();
-			if ($order instanceof Mage_Sales_Model_Order) {
-				if ($order->getState() !== $order->getOrigData('state') && $order->getState() === Mage_Sales_Model_Order::STATE_CANCELED)
-				{
+			$orders = $observer->getEvent()->getOrderIds();
+			$order = Mage::getModel('sales/order')->load($orders['0']);
+			
+			if ($order instanceof Mage_Sales_Model_Order)
+			{
 				$api_url = $this->getHelper()->getAPI();
 				$message_field_name = $this->getHelper()->getMessageField();
+				$to_field_name = $this->getHelper()->getToField();
+				
 				if($message_field_name=='')
 				{
-					$message_field_name = 'message';
+					$message_field_name = 'msg';
 				}
+				if($to_field_name=='')
+				{
+					$to_field_name = 'to';
+				}
+				
 				$sent_method = $this->getHelper()->getSentMethod();
 				
-				$smsto = $this->getHelper()->getTelephoneFromOrder($order);
-				$smsmsg = $this->getHelper()->getMessageForOrderCanceled($order);
+				$smsto = urlencode($this->getHelper()->getTelephoneFromOrder($order));
+				$smsmsg = urlencode($this->getHelper()->getSenderForOrderCanceled($order));
 							
-				
-				$data .= '&'.$message_field_name.'=' . urlencode($smsmsg);
-				$api_url = str_replace('{{mobile_no}}',$smsto,$api_url);
-				
 				if($sent_method)
 				{
+					$data = '';
+					$data .= '?'.$message_field_name.'=' . $smsmsg;
+					$data .= '&'.$to_field_name.'=' . $smsto;
+				
 					$method = 'GET';
 					$url = $api_url.$data;
 					$sendSms = $this->getHelper()->sendSms($url);
@@ -154,11 +188,12 @@ class Carotechs_Smsnotify_Model_Observer
 				else
 				{
 					$method = 'POST';
+					$post_data[$message_field_name] = $smsmsg;
+					$post_data[$to_field_name] =  $smsto;
 					$url = $api_url;
-					$sendSms = $this->getHelper()->sendSms($url,$data);
+					$sendSms = $this->getHelper()->sendSms($url,$post_data);
 				}
 				
-				}
 			}
 		}
 	}
@@ -166,27 +201,35 @@ class Carotechs_Smsnotify_Model_Observer
 	public function sendSmsOnShipmentCreated(Varien_Event_Observer $observer)
 	{
 		if($this->getHelper()->isShipmentsEnabled()) {
-			$shipment = $observer->getEvent()->getShipment();
-			$order = $shipment->getOrder();
+			$orders = $observer->getEvent()->getOrderIds();
+			$order = Mage::getModel('sales/order')->load($orders['0']);
+			
 			if ($order instanceof Mage_Sales_Model_Order)
 			{
 				$api_url = $this->getHelper()->getAPI();
 				$message_field_name = $this->getHelper()->getMessageField();
+				$to_field_name = $this->getHelper()->getToField();
+				
 				if($message_field_name=='')
 				{
-					$message_field_name = 'message';
+					$message_field_name = 'msg';
 				}
+				if($to_field_name=='')
+				{
+					$to_field_name = 'to';
+				}
+				
 				$sent_method = $this->getHelper()->getSentMethod();
 				
-				$smsto = $this->getHelper()->getTelephoneFromOrder($order);
-				$smsmsg = $this->getHelper()->getMessageForShipment($order);
+				$smsto = urlencode($this->getHelper()->getTelephoneFromOrder($order));
+				$smsmsg = urlencode($this->getHelper()->getSenderForShipment($order));
 							
-				
-				$data .= '&'.$message_field_name.'=' . urlencode($smsmsg);
-				$api_url = str_replace('{{mobile_no}}',$smsto,$api_url);
-				
 				if($sent_method)
 				{
+					$data = '';
+					$data .= '?'.$message_field_name.'=' . $smsmsg;
+					$data .= '&'.$to_field_name.'=' . $smsto;
+				
 					$method = 'GET';
 					$url = $api_url.$data;
 					$sendSms = $this->getHelper()->sendSms($url);
@@ -194,8 +237,10 @@ class Carotechs_Smsnotify_Model_Observer
 				else
 				{
 					$method = 'POST';
+					$post_data[$message_field_name] = $smsmsg;
+					$post_data[$to_field_name] =  $smsto;
 					$url = $api_url;
-					$sendSms = $this->getHelper()->sendSms($url,$data);
+					$sendSms = $this->getHelper()->sendSms($url,$post_data);
 				}
 				
 			}

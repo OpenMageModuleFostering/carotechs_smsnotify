@@ -24,9 +24,12 @@
 					<show_in_website>1</show_in_website>
 					<show_in_store>1</show_in_store>
 					<fields>
+					
+						
+						
 						<api translate="label">
-							<label>SMS Gateway URL</label>
-							<comment>example: URL?from=XXX&amp;to={{mobile_no}}</comment>
+							<label>SMS Gateway API URL</label>
+							<comment>Include all parameters in the API except message and customer phone number parameters.</comment>
 							<frontend_type>text</frontend_type>
 							<sort_order>1</sort_order>
 							<show_in_default>1</show_in_default>
@@ -42,15 +45,50 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </urlmethod>
-						<message_field translate="label">
-							<label>Message field name</label>
-							<comment>(ie., msg=your message)</comment>
-							<frontend_type>text</frontend_type>
+						
+						<paraminfo translate="label, comment">
+							<frontend_type>label</frontend_type>
+        					<frontend_class>title_label</frontend_class>
+							<label>URL Parameters</label>
 							<sort_order>3</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
+						</paraminfo>
+						
+						<message_field translate="label">
+							<label>Message parameter name</label>
+							<comment>(ie., msg=your message)</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
 						</message_field>
+						
+						<to_field translate="label">
+							<label>To Number - Parameter Name</label>
+							<comment>Make sure that you capture the customer mobile phone number with the valid format during registration 
+or check out.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</to_field>
+						
+						<configinfo translate="label">
+							<frontend_type>label</frontend_type>
+							<label>Sample API URL format:</label>
+							<comment><![CDATA[http://www.yoursmsgateway.com/send.php?user={{user}}&password={{pass}}&api_id=YOUR_API_ID&to={{phone_number}}&text={{text_message}}<br/><b>Make sure that this URL format matches gateway api url.]]></comment>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</configinfo>	
+						
+						
+						
 					</fields>
 				</general>
 				
@@ -76,7 +114,7 @@
 						
 						<message translate="label comment">
 							<label>Message</label>
-							<comment>Message Template (160 characters)</comment>
+							<comment>Please enter the message you like to send. Use {{firstname}}  to replace with the Customer's First Name in the Order and {{order_id}} to replace with Order No. in the message.</comment>
 							<tooltip>{{firstname}} = First Name</tooltip>
 							<validate>required-entry</validate>
 							<frontend_type>textarea</frontend_type>
@@ -109,7 +147,7 @@
 					
 						<message translate="label comment">
 							<label>Message</label>
-							<comment>Message Template (160 characters)</comment>
+							<comment>Please enter the message you like to send. Use {{firstname}}  to replace with the Customer's First Name in the Order and {{order_id}} to replace with Order No. in the message.</comment>
 							<tooltip>{{firstname}} = First Name {{order_id}} = Order Id</tooltip>
 							<validate>required-entry</validate>
 							<frontend_type>textarea</frontend_type>
@@ -141,7 +179,7 @@
 						
 						<message translate="label comment">
 							<label>Message</label>
-							<comment>Message Template (160 characters)</comment>
+							<comment>Please enter the message you like to send. Use {{firstname}}  to replace with the Customer's First Name in the Order and {{order_id}} to replace with Order No. in the message.</comment>
 							<tooltip>{{firstname}} = First Name {{order_id}} = Order Id</tooltip>
 							<validate>required-entry</validate>
 							<frontend_type>textarea</frontend_type>
@@ -173,7 +211,7 @@
 						
 						<message translate="label comment">
 							<label>Message</label>
-							<comment>Message Template (160 characters)</comment>
+							<comment>Please enter the message you like to send. Use {{firstname}}  to replace with the Customer's First Name in the Order and {{order_id}} to replace with Order No. in the message.</comment>
 							<tooltip>{{firstname}} = First Name {{order_id}} = Order Id</tooltip>
 							<validate>required-entry</validate>
 							<frontend_type>textarea</frontend_type>
@@ -205,7 +243,7 @@
 						
 						<message translate="label comment">
 							<label>Message</label>
-							<comment>Message Template (160 characters)</comment>
+							<comment>Please enter the message you like to send. Use {{firstname}}  to replace with the Customer's First Name in the Order and {{order_id}} to replace with Order No. in the message.</comment>
 							<tooltip>{{firstname}} = First Name {{order_id}} = Order Id</tooltip>
 							<validate>required-entry</validate>
 							<frontend_type>textarea</frontend_type>
