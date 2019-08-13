@@ -77,7 +77,7 @@ or check out.</comment>
 							<show_in_store>1</show_in_store>
 						</to_field>
 						
-						<configinfo translate="label">
+						<!--configinfo translate="label">
 							<frontend_type>label</frontend_type>
 							<label>Sample API URL format:</label>
 							<comment><![CDATA[http://www.yoursmsgateway.com/send.php?user={{user}}&password={{pass}}&api_id=YOUR_API_ID&to={{phone_number}}&text={{text_message}}<br/><b>Make sure that this URL format matches gateway api url.]]></comment>
@@ -85,7 +85,7 @@ or check out.</comment>
 							<show_in_default>1</show_in_default>
 							<show_in_website>0</show_in_website>
 							<show_in_store>0</show_in_store>
-						</configinfo>	
+						</configinfo-->	
 						
 						
 						

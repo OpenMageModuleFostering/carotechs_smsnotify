@@ -60,7 +60,7 @@ class Carotechs_Smsnotify_Adminhtml_SmsnotifyController extends Mage_Adminhtml_C
 							if($sent_method)
 							{
 								$data = '';
-								$data .= '?'.$message_field_name.'=' . $message;
+								$data .= '&'.$message_field_name.'=' . $message;
 								$data .= '&'.$to_field_name.'=' . $phone_array[$i];
 							
 								$method = 'GET';
@@ -69,9 +69,13 @@ class Carotechs_Smsnotify_Adminhtml_SmsnotifyController extends Mage_Adminhtml_C
 							}
 							else
 							{
-								$post_data = array();
-								$post_data[$message_field_name] = $message;
-								$post_data[$to_field_name] =  $phone_array[$i];
+								//$post_data = array();
+								//$post_data[$message_field_name] = $message;
+								//$post_data[$to_field_name] =  $phone_array[$i];
+								$post_data = '';
+								$post_data .= $message_field_name.'=' . $message;
+								$post_data .= '&'.$to_field_name.'=' . $phone_array[$i];
+							
 								$url = $api_url;
 								$sendSms = Mage::helper('smsnotify')->sendSms($url,$post_data);
 							}

@@ -168,6 +168,7 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 			}
 			else
 			{
+			
 				$sendSms = $this->file_get_contents_curl($url);
 			}
 
@@ -189,23 +190,20 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 	
 	public function file_get_contents_curl($url)
 	{
-
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
+		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
 		$res = curl_exec($ch);
 		curl_close($ch);
-
 		return $res;
 	}
 
 	public function file_get_contents_curl_POST($url,$data)
 	{
-
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$res = curl_exec($ch);
 			curl_close($ch);

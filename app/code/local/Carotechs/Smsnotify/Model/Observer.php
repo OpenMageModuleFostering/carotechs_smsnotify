@@ -53,7 +53,7 @@ class Carotechs_Smsnotify_Model_Observer
 					if($sent_method)
 					{
 						$data = '';
-						$data .= '?'.$message_field_name.'=' . $smsmsg;
+						$data .= '&'.$message_field_name.'=' . $smsmsg;
 						$data .= '&'.$to_field_name.'=' . $smsto;
 					
 						$method = 'GET';
@@ -63,8 +63,11 @@ class Carotechs_Smsnotify_Model_Observer
 					else
 					{
 						$method = 'POST';
-						$post_data[$message_field_name] = $smsmsg;
-						$post_data[$to_field_name] =  $smsto;
+						//$post_data[$message_field_name] = $smsmsg;
+						//$post_data[$to_field_name] =  $smsto;
+						$post_data = '';
+						$post_data .= $message_field_name.'=' . $smsmsg;
+						$post_data .= '&'.$to_field_name.'=' . $smsto;
 						$url = $api_url;
 						$sendSms = $this->getHelper()->sendSms($url,$post_data);
 					}
@@ -134,7 +137,7 @@ class Carotechs_Smsnotify_Model_Observer
 						if($sent_method)
 						{
 							$data = '';
-							$data .= '?'.$message_field_name.'=' . $smsmsg;
+							$data .= '&'.$message_field_name.'=' . $smsmsg;
 							$data .= '&'.$to_field_name.'=' . $smsto;
 						
 							$method = 'GET';
@@ -144,10 +147,13 @@ class Carotechs_Smsnotify_Model_Observer
 						else
 						{
 							$method = 'POST';
-							$post_data[$message_field_name] = $smsmsg;
-							$post_data[$to_field_name] =  $smsto;
-							$url = $api_url;
-							$sendSms = $this->getHelper()->sendSms($url,$post_data);
+						//$post_data[$message_field_name] = $smsmsg;
+						//$post_data[$to_field_name] =  $smsto;
+						$post_data = '';
+						$post_data .= $message_field_name.'=' . $smsmsg;
+						$post_data .= '&'.$to_field_name.'=' . $smsto;
+						$url = $api_url;
+						$sendSms = $this->getHelper()->sendSms($url,$post_data);
 						}
 					} // end flag 
 					else
@@ -214,7 +220,7 @@ class Carotechs_Smsnotify_Model_Observer
 						if($sent_method)
 						{
 							$data = '';
-							$data .= '?'.$message_field_name.'=' . $smsmsg;
+							$data .= '&'.$message_field_name.'=' . $smsmsg;
 							$data .= '&'.$to_field_name.'=' . $smsto;
 						
 							$method = 'GET';
@@ -224,8 +230,9 @@ class Carotechs_Smsnotify_Model_Observer
 						else
 						{
 							$method = 'POST';
-							$post_data[$message_field_name] = $smsmsg;
-							$post_data[$to_field_name] =  $smsto;
+							$post_data = '';
+							$post_data .= $message_field_name.'=' . $smsmsg;
+							$post_data .= '&'.$to_field_name.'=' . $smsto;
 							$url = $api_url;
 							$sendSms = $this->getHelper()->sendSms($url,$post_data);
 						}
@@ -295,7 +302,7 @@ class Carotechs_Smsnotify_Model_Observer
 						if($sent_method)
 						{
 							$data = '';
-							$data .= '?'.$message_field_name.'=' . $smsmsg;
+							$data .= '&'.$message_field_name.'=' . $smsmsg;
 							$data .= '&'.$to_field_name.'=' . $smsto;
 						
 							$method = 'GET';
@@ -305,8 +312,9 @@ class Carotechs_Smsnotify_Model_Observer
 						else
 						{
 							$method = 'POST';
-							$post_data[$message_field_name] = $smsmsg;
-							$post_data[$to_field_name] =  $smsto;
+							$post_data = '';
+							$post_data .= $message_field_name.'=' . $smsmsg;
+							$post_data .= '&'.$to_field_name.'=' . $smsto;
 							$url = $api_url;
 							$sendSms = $this->getHelper()->sendSms($url,$post_data);
 						}
@@ -376,7 +384,7 @@ class Carotechs_Smsnotify_Model_Observer
 						if($sent_method)
 						{
 							$data = '';
-							$data .= '?'.$message_field_name.'=' . $smsmsg;
+							$data .= '&'.$message_field_name.'=' . $smsmsg;
 							$data .= '&'.$to_field_name.'=' . $smsto;
 						
 							$method = 'GET';
@@ -386,8 +394,9 @@ class Carotechs_Smsnotify_Model_Observer
 						else
 						{
 							$method = 'POST';
-							$post_data[$message_field_name] = $smsmsg;
-							$post_data[$to_field_name] =  $smsto;
+							$post_data = '';
+							$post_data .= $message_field_name.'=' . $smsmsg;
+							$post_data .= '&'.$to_field_name.'=' . $smsto;
 							$url = $api_url;
 							$sendSms = $this->getHelper()->sendSms($url,$post_data);
 						}

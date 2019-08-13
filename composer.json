@@ -3,7 +3,7 @@
     "type": "magento-module",
     "license": "OSLv3.0",
     "homepage": "",
-    "description": "SMS notification",
+    "description": "Sms notification",
     "authors": [
     {
         "name": "Carotechs",
