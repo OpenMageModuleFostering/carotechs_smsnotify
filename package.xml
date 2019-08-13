@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package>
     <name>Carotechs_Smsnotify</name>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">OSLv3.0</license>
     <channel>community</channel>
     <extends/>
-    <summary>SMS notification</summary>
-    <description>SMS notification</description>
-    <notes>SMS notification</notes>
+    <summary>Send Sms Notification</summary>
+    <description>Send Sms Notification</description>
+    <notes>Send Sms Notification</notes>
     <authors><author><name>carotechs</name><user>carotechs</user><email>apps@carotechs.com</email></author></authors>
-    <date>2014-12-17</date>
-    <time>11:07:20</time>
-    <contents><target name="mageetc"><dir name="modules"><file name="Carotechs_Smsnotify.xml" hash="cbc54fef2beda0afca8e70da6b1cb64e"/></dir></target><target name="magelocal"><dir name="Carotechs"><dir name="Smsnotify"><dir name="Helper"><file name="Data.php" hash="02cf80e3fc5cdbe9f7db8ea492dcf2bb"/></dir><dir name="Model"><dir name="Dropdown"><file name="Values.php" hash="c4b45a94203c6d01ad5c68254e9a47ef"/></dir><file name="Observer.php" hash="a9f4081ec47a2bf0e70ce73df7a23498"/></dir><dir name="etc"><file name="adminhtml.xml" hash="630a24f98f8d22583a25c1038663ec48"/><file name="config.xml" hash="692711636e872c469e9a882b6aa4c54d"/><file name="system.xml" hash="264f6be93060b3c9624af49cff3cac45"/></dir></dir></dir></target></contents>
+    <date>2014-12-18</date>
+    <time>12:13:07</time>
+    <contents><target name="magelocal"><dir name="Carotechs"><dir name="Smsnotify"><dir name="Helper"><file name="Data.php" hash="8955e8776ecb1ae1d0413aa8ecb07c3f"/></dir><dir name="Model"><dir name="Dropdown"><file name="Values.php" hash="c4b45a94203c6d01ad5c68254e9a47ef"/></dir><file name="Observer.php" hash="a9f4081ec47a2bf0e70ce73df7a23498"/></dir><dir name="etc"><file name="adminhtml.xml" hash="630a24f98f8d22583a25c1038663ec48"/><file name="config.xml" hash="0dbc438606f95be4b494c7bb29093fcb"/><file name="system.xml" hash="264f6be93060b3c9624af49cff3cac45"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Carotechs_Smsnotify.xml" hash="cbc54fef2beda0afca8e70da6b1cb64e"/></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>

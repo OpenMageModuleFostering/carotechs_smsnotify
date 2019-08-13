@@ -179,7 +179,7 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 			return true;
 			switch($sendSms) {
 				case '01':
-					$status_message = Mage::helper('smsnotify')->__('24X Username or password incorrect.');
+					$status_message = Mage::helper('smsnotify')->__('Username or password incorrect.');
 					$status = Mage::helper('smsnotify')->__('Not sent');
 					break;
 				case '02':
