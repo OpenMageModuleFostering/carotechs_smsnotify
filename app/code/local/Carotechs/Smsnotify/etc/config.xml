@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   SMS
+ * @package    Carotechs_Smsnotify
+ * @author     Carotechs
+ */
+ -->
+<config>
+  <modules>
+    <Carotechs_Smsnotify>
+      <version>0.1.1</version>
+    </Carotechs_Smsnotify>
+  </modules>
+  
+  <adminhtml>
+    <acl>
+      <resources>
+        <admin>
+          <children>
+            <system>
+              <children>
+                <config>
+                  <children>
+                    <smsnotify translate="title" module="smsnotify">
+                      <title>SMS</title>
+                      <sort_order>0</sort_order>
+                    </smsnotify>
+                  </children>
+                </config>
+              </children>
+            </system>
+          </children>
+        </admin>
+      </resources>
+    </acl>
+  </adminhtml>
+  
+
+  <global>
+    <models>
+      <smsnotify>
+        <class>Carotechs_Smsnotify_Model</class>
+      </smsnotify>
+    </models>
+	  
+    <helpers>
+      <smsnotify>
+        <class>Carotechs_Smsnotify_Helper</class>
+      </smsnotify>
+    </helpers>
+    <events>
+      <checkout_onepage_controller_success_action>
+        <observers>
+          <Carotechs_Smsnotify_Created>
+            <type>singleton</type>
+            <class>Carotechs_Smsnotify_Model_Observer</class>
+            <method>sendSmsOnOrderCreated</method>
+          </Carotechs_Smsnotify_Created>
+        </observers>
+      </checkout_onepage_controller_success_action>
+      <sales_order_save_after>
+        <observers>
+          <Carotechs_Smsnotify_Order_Hold>
+            <type>singleton</type>
+            <class>Carotechs_Smsnotify_Model_Observer</class>
+            <method>sendSmsOnOrderHold</method>
+          </Carotechs_Smsnotify_Order_Hold>
+          <Carotechs_Smsnotify_Order_Unhold>
+            <type>singleton</type>
+            <class>Carotechs_Smsnotify_Model_Observer</class>
+            <method>sendSmsOnOrderUnhold</method>
+          </Carotechs_Smsnotify_Order_Unhold>
+          <Carotechs_Smsnotify_Order_Canceled>
+            <type>singleton</type>
+            <class>Carotechs_Smsnotify_Model_Observer</class>
+            <method>sendSmsOnOrderCanceled</method>
+          </Carotechs_Smsnotify_Order_Canceled>
+        </observers>
+      </sales_order_save_after>
+      <sales_order_shipment_save_after>
+        <observers>
+          <Carotechs_Smsnotify_Shipment_Created>
+            <type>singleton</type>
+            <class>Carotechs_Smsnotify_Model_Observer</class>
+            <method>sendSmsOnShipmentCreated</method>
+          </Carotechs_Smsnotify_Shipment_Created>
+        </observers>
+      </sales_order_shipment_save_after>
+    </events>
+  </global>
+ 
+
+  <default>
+    <smsnotify>
+		<general>
+			 <api>URL?{{mobile_no}}</api>
+			 <urlmethod>1</urlmethod>
+             <message_field>msg</message_field>
+         </general>
+      <orders>
+        <enabled>0</enabled>
+        <sender>Magento</sender>
+        <message>Hello {{firstname}}. Your order has been received. Thank you for your purchase!</message>
+        <notify>0</notify>
+      </orders>
+      <order_hold>
+        <enabled>0</enabled>
+        <sender>Magento</sender>
+        <message>Hello {{firstname}}. Your order {{order_id}} has been placed on hold.</message>
+      </order_hold>
+      <order_unhold>
+        <enabled>0</enabled>
+        <sender>Magento</sender>
+        <message>Hello {{firstname}}. Your order {{order_id}} has been released from holding status.</message>
+      </order_unhold>
+      <order_canceled>
+        <enabled>0</enabled>
+        <sender>Magento</sender>
+        <message>Hello {{firstname}}. Your order {{order_id}} has been canceled.</message>
+      </order_canceled>
+      <shipments>
+        <enabled>0</enabled>
+        <sender>Magento</sender>
+        <message>Hello {{firstname}}. Your order ({{order_id}}) has been shipped. Thank you for buying from us!</message>
+      </shipments>
+    </smsnotify>
+  </default>
+</config>
