@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Carotechs_Smsnotify",
+    "type": "magento-module",
+    "license": "OSLv3.0",
+    "homepage": "",
+    "description": "SMS notification",
+    "authors": [
+    {
+        "name": "carotechs",
+        "email": "apps@carotechs.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

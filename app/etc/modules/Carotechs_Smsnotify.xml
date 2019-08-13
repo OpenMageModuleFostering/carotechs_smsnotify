@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   SMS
+ * @package    Carotechs_Smsnotify
+ */
+ -->
+<config>
+  <modules>
+    <Carotechs_Smsnotify>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Carotechs_Smsnotify>
+  </modules>
+</config>
