@@ -172,52 +172,24 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 			}
 
 		}
-		catch(Exception $e) {
+		catch(Exception $e)
+		{
 			$sendSms = '';
 		}
-		if($sendSms) {
+		if($sendSms)
+		{
 			return true;
-			switch($sendSms) {
-				case '01':
-					$status_message = Mage::helper('smsnotify')->__('Username or password incorrect.');
-					$status = Mage::helper('smsnotify')->__('Not sent');
-					break;
-				case '02':
-					$status_message = Mage::helper('smsnotify')->__('SmsTo missing.');
-					$status = Mage::helper('smsnotify')->__('Not sent');
-					break;
-				case '03':
-					$status_message = Mage::helper('smsnotify')->__('SmsFrom missing.');
-					$status = Mage::helper('smsnotify')->__('Not sent');
-					break;
-				case '04':
-					$status_message = Mage::helper('smsnotify')->__('SmsMsg missing.');
-					$status = Mage::helper('smsnotify')->__('Not sent');
-					break;
-				case '09':
-					$status_message = Mage::helper('smsnotify')->__('Insufficient credits.');
-					$status = Mage::helper('smsnotify')->__('Not sent');
-					break;
-				default:
-					$status_message = Mage::helper('smsnotify')->__('Sms successfully sent.');
-					$status = Mage::helper('smsnotify')->__('Sent');
-					break;
-			}
 		}
-		else {
+		else
+		{
 			return false;
-			$status_message = Mage::helper('smsnotify')->__('Not able to send the sms. Please contact the developer.');
-			$status = 'Not sent';
 		}
-		$ret['status_message'] = $status_message;
-		$ret['status'] = $status;
-		return $ret;
+		
 	}
 	
 	public function file_get_contents_curl($url)
 	{
-	//	echo $url;
-	//die();
+		
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -232,9 +204,7 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 
 	public function file_get_contents_curl_POST($url,$data)
 	{
-			//echo $url;
-			//print_r($data);
-		 //  die();
+		
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
