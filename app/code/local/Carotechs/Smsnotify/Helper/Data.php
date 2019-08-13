@@ -189,8 +189,6 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 	
 	public function file_get_contents_curl($url)
 	{
-		
-		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
@@ -204,7 +202,7 @@ class Carotechs_Smsnotify_Helper_Data extends Mage_Core_Helper_Data
 
 	public function file_get_contents_curl_POST($url,$data)
 	{
-		
+
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);

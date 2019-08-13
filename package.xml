@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package>
     <name>Carotechs_Smsnotify</name>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">OSLv3.0</license>
     <channel>community</channel>
     <extends/>
-    <summary>Send sms notification</summary>
-    <description>Send sms notification</description>
-    <notes>Send sms notification</notes>
-    <authors><author><name>carotechs</name><user>carotechs</user><email>apps@carotechs.com</email></author></authors>
-    <date>2014-12-19</date>
-    <time>09:44:29</time>
-    <contents><target name="mageetc"><dir name="modules"><file name="Carotechs_Smsnotify.xml" hash="cbc54fef2beda0afca8e70da6b1cb64e"/></dir></target><target name="magelocal"><dir name="Carotechs"><dir name="Smsnotify"><dir name="Helper"><file name="Data.php" hash="16b780071331ad3f75aa8e8e282fcff2"/></dir><dir name="Model"><dir name="Dropdown"><file name="Values.php" hash="c4b45a94203c6d01ad5c68254e9a47ef"/></dir><file name="Observer.php" hash="4d868dc8e1dbc7dfac8a520e986f641a"/></dir><dir name="etc"><file name="adminhtml.xml" hash="630a24f98f8d22583a25c1038663ec48"/><file name="config.xml" hash="e9473a9d5b2fb29c9a8be5f165a2d370"/><file name="system.xml" hash="264f6be93060b3c9624af49cff3cac45"/></dir></dir></dir></target></contents>
+    <summary>SMS notification</summary>
+    <description>SMS notification</description>
+    <notes>Sms notification</notes>
+    <authors><author><name>Carotechs</name><user>Carotechs</user><email>apps@carotechs.com</email></author></authors>
+    <date>2014-12-31</date>
+    <time>09:25:44</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="Carotechs_Smsnotify.xml" hash="cbc54fef2beda0afca8e70da6b1cb64e"/></dir></target><target name="magelocal"><dir name="Carotechs"><dir name="Smsnotify"><dir name="Block"><dir name="Adminhtml"><file name="Smsnotify.php" hash="f6be5c24ff0fdf5d1f5762dc6143e5d3"/></dir></dir><dir name="Helper"><file name="Data.php" hash="2ec7d62b4b02c351c2241a0b0d648cbf"/></dir><dir name="Model"><dir name="Dropdown"><file name="Values.php" hash="c4b45a94203c6d01ad5c68254e9a47ef"/></dir><file name="Observer.php" hash="4d868dc8e1dbc7dfac8a520e986f641a"/></dir><dir name="controllers"><dir name="Adminhtml"><file name="SmsnotifyController.php" hash="264c71915d0f6cbe23ae6d3dd9975d97"/></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="e99746e0ff62933de319ad34edb31ec1"/><file name="config.xml" hash="a5cb4bd1d8e7433b30600ba33e130e0d"/><file name="system.xml" hash="264f6be93060b3c9624af49cff3cac45"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="smsnotify.xml" hash="0cec03163537aa5471b459f8698e56b4"/></dir><dir name="template"><dir name="smsnotify"><file name="sendsms.phtml" hash="a9f51355cb85c439c72b65b3236aa61a"/></dir></dir></dir></dir></dir></target></contents>
     <compatible/>
-    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php><package><name></name><channel>connect.magentocommerce.com/core</channel><min></min><max></max></package></required></dependencies>
 </package>

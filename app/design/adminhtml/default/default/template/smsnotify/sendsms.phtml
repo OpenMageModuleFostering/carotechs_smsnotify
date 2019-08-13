@@ -1,0 +1,98 @@
+<script type="text/javascript">
+function validateValue()
+{
+	var p_numbers = document.getElementById('phone_numbers').value;
+	var message = document.getElementById('text_message').value;
+	if(p_numbers=='' || message=='')
+	{
+		alert("Please enter all required values.");
+		return false;
+	}
+	else
+	{
+		var x = confirm("Are you sure to send this message?");
+		if(x)
+		{
+			document.getElementById('loading-mask').style.display='block';
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+}
+</script>
+<div id="page:main-container">
+<?php
+$status = Mage::getSingleton('core/session')->getSmsstatus(true);
+
+if($status == 'success')
+{
+?>
+  <div id="messages"><ul class="messages"><li class="success-msg"><ul><li><span><?php echo Mage::getSingleton('core/session')->getSmsmsg(true);?></span></li></ul></li></ul></div>
+  <?php
+  }
+ if($status == 'error')
+  {
+  ?>
+	<div id="messages"><ul class="messages"><li class="error-msg"><ul><li><span><?php echo Mage::getSingleton('core/session')->getSmsmsg(true);?></span></li></ul></li></ul></div>
+  <?php
+  }
+  
+//  Mage::getSingleton('core/session')->setSmsstatus('');
+  ?>
+<div class="box-center">
+
+<div style="display: none;" id="loading-mask">
+    <p id="loading_mask_loader" class="loader">
+	<img alt="Loading..." src="<?php echo $this->getSkinUrl('images/ajax-loader-tr.gif');?>"><br>Please wait...</p>
+</div>
+
+    <!--Order Information-->
+    <div class="entry-edit">
+        
+        <div class="entry-edit-head">
+      
+            <h4 class="icon-head head-account">Send SMS Notification</h4>
+ 
+        </div>
+        <div class="fieldset" align="center">
+<form method="post" action="<?php echo $this->getFormAction(); ?>" id="sendsms" name="sendsms" onsubmit="return validateValue();">
+<input type="hidden" name="po_id" value=""/>
+
+<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+   
+<table cellspacing="0" class="form-list">
+
+            <tbody>
+            <tr>
+                <td class="label"><br/><label>Customer Telephone Number(s) : </label></td>
+                <td class="value"><br/><textarea id="phone_numbers" style="width:270px;height:50px;" name="phone_numbers"></textarea><p class="note"><span>Comma-separated.</span></p></td>
+            </tr>
+        
+            <tr>
+                <td class="label"><br/><label>Message:</label></td>
+                <td class="value"><br/><textarea id="text_message" name="message"></textarea></td>
+            </tr>
+            
+            
+            
+            <tr>
+			 <td class="label"><br/><label></label></td>
+				<td  align="left"><br/><input onclick="confirmsend()" type="submit" name="submit" value="Send SMS"/><p class="note"><span>Make sure that you have set all the required parameters in<br/>System->Configuration->SMS notifications section.</span></p></td>
+			</tr>
+			
+			
+   </tbody>
+</table>
+
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+</div>

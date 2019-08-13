@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <smsnotify_adminhtml_smsnotify_index>
+        <reference name="content">
+            <block type="smsnotify/adminhtml_smsnotify" name="smsnotify" template="smsnotify/sendsms.phtml"/>
+        </reference>
+    </smsnotify_adminhtml_smsnotify_index>
+</layout>

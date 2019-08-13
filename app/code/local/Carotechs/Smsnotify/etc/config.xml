@@ -13,31 +13,50 @@
     </Carotechs_Smsnotify>
   </modules>
   
+  
+  <admin>
+        <routers>
+			<smsnotify>
+				<use>admin</use>
+				<args>
+					<module>Carotechs_Smsnotify</module>
+					<frontName>smsnotify</frontName>
+				</args>
+			</smsnotify>
+        </routers>
+    </admin>
+	
+	
   <adminhtml>
-    <acl>
-      <resources>
-        <admin>
-          <children>
-            <system>
-              <children>
-                <config>
-                  <children>
-                    <smsnotify translate="title" module="smsnotify">
-                      <title>SMS</title>
-                      <sort_order>0</sort_order>
+        <menu>
+            <customer>
+                <children>
+                    <smsnotify module="smsnotify">
+                        <title>Send SMS</title>
+                        <sort_order>200</sort_order>
+                        <action>smsnotify/adminhtml_smsnotify/index</action>
                     </smsnotify>
-                  </children>
-                </config>
-              </children>
-            </system>
-          </children>
-        </admin>
-      </resources>
-    </acl>
+                </children>
+            </customer>
+        </menu>
+		
+		<layout>
+			<updates>
+				<smsnotify>
+					<file>smsnotify.xml</file>
+				</smsnotify>
+			</updates>
+		</layout>
   </adminhtml>
   
 
   <global>
+	<blocks>
+            <smsnotify>
+                <class>Carotechs_Smsnotify_Block</class>
+            </smsnotify>
+        </blocks>
+		
     <models>
       <smsnotify>
         <class>Carotechs_Smsnotify_Model</class>
