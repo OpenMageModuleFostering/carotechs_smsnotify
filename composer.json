@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Carotechs_Smsnotify",
+    "name": "openmage-module-fostering\/carotechs_smsnotify",
     "type": "magento-module",
-    "license": "OSLv3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Sms notification",
     "authors": [
